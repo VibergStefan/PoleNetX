@@ -1,42 +1,8 @@
-<!DOCTYPE html>
-<html lang="sv">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>PoleNetX</title>
-  <link rel="stylesheet" href="style.css" />
-  <script type="module" src="../src/main.js" defer></script>
-</head>
-<body>
-  <header>
-    <h1>PoleNetX – Luftledningsprojektering</h1>
-  </header>
+<label for="gisFile">GIS-data:</label>
+<input type="file" id="gisFile" accept=".dxf, .csv, .shp" />
+<select id="gisAction">
+  <option value="import">Importera</option>
+  <option value="export">Exportera</option>
+</select>
+<button id="processGisBtn">Kör GIS-data</button>
 
-  <section id="controls">
-    <label for="dxfFile">Ladda upp DXF:</label>
-    <input type="file" id="dxfFile" accept=".dxf" />
-
-    <label for="voltage">Spänningsnivå:</label>
-    <select id="voltage">
-      <option value="12">12 kV</option>
-      <option value="24">24 kV</option>
-      <option value="36">36 kV</option>
-      <option value="52">52 kV</option>
-      <option value="72.5">72.5 kV</option>
-      <option value="145">145 kV</option>
-      <option value="170">170 kV</option>
-    </select>
-
-    <button id="validateBtn">Validera</button>
-    <button id="exportBtn">Exportera rapport (PDF)</button>
-  </section>
-
-  <main>
-    <div id="map" style="width:100%; height:80vh;"></div>
-  </main>
-
-  <footer>
-    <p>&copy; 2025 PoleNetX | Utvecklad av Stefan</p>
-  </footer>
-</body>
-</html>
