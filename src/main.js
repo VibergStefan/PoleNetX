@@ -27,38 +27,3 @@ function initMap() {
   layers["Google Satellit"].addTo(map); // Standardlager
   L.control.layers(layers).addTo(map);
 }
-
-function handleFile(event) {
-  const file = event.target.files[0];
-  if (!file) return;
-
-  const reader = new FileReader();
-  reader.onload = (e) => {
-    const parsed = parseDXF(e.target.result);
-    if (!parsed || parsed.length === 0) {
-      alert("Ingen centrumlinje hittades.");
-      return;
-    }
-
-    if (polyline) map.removeLayer(polyline);
-    polyline = L.polyline(parsed.map(pt => [pt.y, pt.x]), { color: "blue" }).addTo(map);
-    map.fitBounds(polyline.getBounds());
-
-    poles = [{ ...parsed[0], label: "Stolpe 1" }];
-    L.marker([parsed[0].y, parsed[0].x]).addTo(map).bindPopup("Stolpe 1");
-  };
-  reader.readAsText(file);
-}
-
-function validateDesignFlow() {
-  if (!poles.length) {
-    alert("Ingen stolpe placerad.");
-    return;
-  }
-
-  const voltage = document.getElementById("voltage").value;
-  const terrain = document.getElementById("terrain").value;
-
-  const result = validateDesign(poles, voltage, terrain);
-  alert(`Validering klar:\n${result.message}`);
-}
