@@ -1,8 +1,16 @@
-<label for="gisFile">GIS-data:</label>
-<input type="file" id="gisFile" accept=".dxf, .csv, .shp" />
-<select id="gisAction">
-  <option value="import">Importera</option>
-  <option value="export">Exportera</option>
-</select>
-<button id="processGisBtn">Kör GIS-data</button>
+<body>
+  <header>
+    <h1>PoleNetX – GIS och stolpplanering</h1>
+  </header>
 
+  <main>
+    <div id="map" style="width:100%; height:80vh;"></div>
+  </main>
+
+  <div id="toolbar">
+    <button id="gisDataBtn">
+      <img src="emlid_reach_rx_icon.png" alt="GIS-data" />
+    </button>
+    <button id="addPoleBtn">📍</button>
+  </div>
+</body>
