@@ -1,6 +1,7 @@
 import parseDXF from "./dxf-parser.js";
 import validateDesign from "./validation.js";
 import generatePDF from "./export.js";
+import L from "leaflet";
 
 let map;
 let polyline = null;
@@ -8,6 +9,7 @@ let poles = [];
 
 document.addEventListener("DOMContentLoaded", () => {
   initMap();
+  initLayerControl();
 
   document.getElementById("dxfFile").addEventListener("change", handleFile);
   document.getElementById("validateBtn").addEventListener("click", validateDesignFlow);
@@ -16,7 +18,21 @@ document.addEventListener("DOMContentLoaded", () => {
 
 function initMap() {
   map = L.map("map").setView([57.427, 14.216], 10);
-  L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png").addTo(map);
+
+  const layers = {
+    "Google Satellit": L.tileLayer("https://mt1.google.com/vt/lyrs=y&x={x}&y={y}&z={z}", { attribution: "Google Maps" }),
+    "Google Hybrid": L.tileLayer("https://mt1.google.com/vt/lyrs=y&lyrs=h&x={x}&y={y}&z={z}", { attribution: "Google Maps" }),
+    "Google Terräng": L.tileLayer("https://mt1.google.com/vt/lyrs=p&x={x}&y={y}&z={z}", { attribution: "Google Maps" }),
+    "OpenStreetMap": L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", { attribution: "OpenStreetMap" })
+  };
+
+  layers["Google Satellit"].addTo(map); // Standardlager
+
+  L.control.layers(layers).addTo(map);
+}
+
+function initLayerControl() {
+  console.log("Lagerkontroll initierad");
 }
 
 function handleFile(event) {
@@ -32,24 +48,4 @@ function handleFile(event) {
     }
 
     if (polyline) map.removeLayer(polyline);
-    polyline = L.polyline(parsed.map(pt => [pt.y, pt.x]), { color: "blue" }).addTo(map);
-    map.fitBounds(polyline.getBounds());
-
-    poles = [{ ...parsed[0], label: "Stolpe 1" }];
-    L.marker([parsed[0].y, parsed[0].x]).addTo(map).bindPopup("Stolpe 1");
-  };
-  reader.readAsText(file);
-}
-
-function validateDesignFlow() {
-  if (!poles.length) {
-    alert("Ingen stolpe placerad.");
-    return;
-  }
-
-  const voltage = document.getElementById("voltage").value;
-  const terrain = document.getElementById("terrain").value;
-
-  const result = validateDesign(poles, voltage, terrain);
-  alert(`Validering klar:\n${result.message}`);
-}
+    polyline = L.polyline(parsed.map(pt => [pt.y, pt.x]), { color: "blue"
