@@ -1,8 +1,42 @@
+body {
+  font-family: "Segoe UI", sans-serif;
+  margin: 0;
+  background-color: #f4f4f4;
+  color: #222;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px;
+  background: #444;
+  color: white;
+}
+
+nav button {
+  background: #007bff;
+  color: white;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+}
+
+#cad-container {
+  width: 100%;
+  height: 80vh;
+  background: #e5e5e5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 #toolbar {
   position: absolute;
-  top: 10px;
-  left: 10px;
+  right: 10px;
+  top: 80px;
   display: flex;
+  flex-direction: column;
   gap: 8px;
 }
 
