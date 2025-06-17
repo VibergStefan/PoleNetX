@@ -1,16 +1,25 @@
-import jsPDF from "jspdf";
+import React from "react";
+import { Page } from "../App";
 
-export default function generatePDF(poles) {
-  const doc = new jsPDF();
-  const date = new Date().toLocaleDateString();
-  doc.setFontSize(16);
-  doc.text("Projektrapport – PoleNetX", 20, 30);
-  doc.setFontSize(12);
-  doc.text(`Datum: ${date}`, 20, 40);
-  doc.text(`Standard: SS-EN 50341-2-18`, 20, 50);
-  doc.addPage();
-  poles.forEach((p, i) => {
-    doc.text(`Stolpe ${i + 1}: X=${p.x.toFixed(2)} Y=${p.y.toFixed(2)} Z=${p.z.toFixed(2)}`, 20, 30 + i * 8);
-  });
-  doc.save("PoleNetX_rapport.pdf");
+export default function Sidebar({ selected, onSelect }: { selected: Page; onSelect: (p: Page) => void }) {
+  const pages: { id: Page; title: string }[] = [
+    { id: "import", title: "Import" },
+    { id: "stolpar", title: "Stolpar" },
+    { id: "lastfall", title: "Lastfall" },
+    { id: "rapport", title: "Rapport" },
+  ];
+  return (
+    <aside className="w-48 bg-gray-800 text-white flex flex-col">
+      <h2 className="text-xl p-4">AvCad</h2>
+      {pages.map((p) => (
+        <button
+          key={p.id}
+          className={`p-3 text-left hover:bg-gray-700 ${selected === p.id ? "bg-gray-700" : ""}`}
+          onClick={() => onSelect(p.id)}
+        >
+          {p.title}
+        </button>
+      ))}
+    </aside>
+  );
 }
