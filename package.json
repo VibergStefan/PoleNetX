@@ -1,0 +1,12 @@
+{
+  "name": "polenetx",
+  "version": "1.0.0",
+  "description": "Projektering av luftledningar",
+  "main": "src/main.js",
+  "scripts": {
+    "start": "live-server public"
+  },
+  "dependencies": {
+    "jspdf": "^2.5.1"
+  }
+}
