@@ -1,16 +1,35 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>PoleNetX – CAD & GIS</title>
+  <link rel="stylesheet" href="style.css" />
+  <script type="module" src="./src/main.js" defer></script>
+</head>
 <body>
   <header>
-    <h1>PoleNetX – GIS och stolpplanering</h1>
+    <h1>PoleNetX – CAD-vy</h1>
+    <nav>
+      <button id="switchToGIS">GIS-vy 🌍</button>
+      <button id="switchToCAD">CAD-vy ✏️</button>
+    </nav>
   </header>
 
   <main>
-    <div id="map" style="width:100%; height:80vh;"></div>
+    <div id="cad-container">
+      <canvas id="cadCanvas"></canvas>
+    </div>
+    <aside id="toolbar">
+      <button id="gisDataBtn">
+        <img src="emlid_reach_rx_icon.png" alt="GIS-data" />
+      </button>
+      <button id="addPoleBtn">📍 Stolpe</button>
+    </aside>
   </main>
 
-  <div id="toolbar">
-    <button id="gisDataBtn">
-      <img src="emlid_reach_rx_icon.png" alt="GIS-data" />
-    </button>
-    <button id="addPoleBtn">📍</button>
-  </div>
+  <footer>
+    <p>&copy; 2025 PoleNetX</p>
+  </footer>
 </body>
+</html>
