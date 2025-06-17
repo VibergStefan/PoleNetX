@@ -1,0 +1,39 @@
+body {
+  margin: 0;
+  font-family: "Segoe UI", sans-serif;
+  background-color: #f4f4f4;
+  color: #222;
+}
+
+header {
+  background-color: #005fa3;
+  color: white;
+  padding: 1rem;
+  display: flex;
+  align-items: center;
+}
+
+h1 {
+  font-size: 1.6rem;
+  margin: 0;
+}
+
+#controls {
+  background: #fff;
+  padding: 1rem;
+  display: flex;
+  gap: 1rem;
+}
+
+#map {
+  width: 100%;
+  height: 80vh;
+  background-color: #e5e5e5;
+}
+
+footer {
+  padding: 0.5rem;
+  text-align: center;
+  background-color: #ddd;
+  font-size: 0.8rem;
+}
