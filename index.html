@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>PoleNetX</title>
+  <link rel="stylesheet" href="style.css" />
+  <script type="module" src="../src/main.js" defer></script>
+</head>
+<body>
+  <header>
+    <img src="logo.png" alt="PoleNetX Logotyp" class="logo" />
+    <h1>PoleNetX – Luftledningsprojektering</h1>
+  </header>
+
+  <section id="controls">
+    <label for="dxfFile">Ladda upp DXF:</label>
+    <input type="file" id="dxfFile" accept=".dxf" />
+
+    <label for="voltage">Spänningsnivå:</label>
+    <select id="voltage">
+      <option value="12">12 kV</option>
+      <option value="24">24 kV</option>
+      <option value="36">36 kV</option>
+    </select>
+
+    <label for="terrain">Terrängtyp:</label>
+    <select id="terrain">
+      <option value="road">Väg</option>
+      <option value="forest">Skog</option>
+      <option value="agriculture">Jordbruk</option>
+      <option value="urban">Bebyggelse</option>
+    </select>
+
+    <button id="validateBtn">Validera</button>
+    <button id="exportBtn">Exportera rapport (PDF)</button>
+  </section>
+
+  <main>
+    <div id="map">Laddar kartvyn...</div>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 PoleNetX | Utvecklad av Stefan</p>
+  </footer>
+</body>
+</html>
