@@ -9,8 +9,6 @@ let poles = [];
 
 document.addEventListener("DOMContentLoaded", () => {
   initMap();
-  initLayerControl();
-
   document.getElementById("dxfFile").addEventListener("change", handleFile);
   document.getElementById("validateBtn").addEventListener("click", validateDesignFlow);
   document.getElementById("exportBtn").addEventListener("click", () => generatePDF(poles));
@@ -27,12 +25,7 @@ function initMap() {
   };
 
   layers["Google Satellit"].addTo(map); // Standardlager
-
   L.control.layers(layers).addTo(map);
-}
-
-function initLayerControl() {
-  console.log("Lagerkontroll initierad");
 }
 
 function handleFile(event) {
@@ -48,4 +41,24 @@ function handleFile(event) {
     }
 
     if (polyline) map.removeLayer(polyline);
-    polyline = L.polyline(parsed.map(pt => [pt.y, pt.x]), { color: "blue"
+    polyline = L.polyline(parsed.map(pt => [pt.y, pt.x]), { color: "blue" }).addTo(map);
+    map.fitBounds(polyline.getBounds());
+
+    poles = [{ ...parsed[0], label: "Stolpe 1" }];
+    L.marker([parsed[0].y, parsed[0].x]).addTo(map).bindPopup("Stolpe 1");
+  };
+  reader.readAsText(file);
+}
+
+function validateDesignFlow() {
+  if (!poles.length) {
+    alert("Ingen stolpe placerad.");
+    return;
+  }
+
+  const voltage = document.getElementById("voltage").value;
+  const terrain = document.getElementById("terrain").value;
+
+  const result = validateDesign(poles, voltage, terrain);
+  alert(`Validering klar:\n${result.message}`);
+}
